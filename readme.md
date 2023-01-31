@@ -2,33 +2,161 @@
 title: Mode d'emploi pour évaluer et entraîner un modèle HTR avec Kraken
 ---
 
+Toutes ces opérations se passent dans une session **Ubuntu**.
+
 # Installer Kraken
 
-1. Ouvrir le programme **Terminal**
+1. Pour ouvrir le programme **Terminal** :
+	
 	1. Appuyer sur la touche `Windows`
 	2. Taper au clavier `terminal`
 	3. `Entrée`
 
 2. Quand le programme est ouvert :
+
 	- Pour agrandir le texte : `Ctrl Maj +` (touche en haut du clavier, après les numéros)
 	- Pour diminuer le texte : `Ctrl -` (touche du numéro 6)
-	- Pour installer : 
+
+Face aux difficultés rencontrées pour l'utilisation de Kraken avec Python 3.10, nous proposons une méthode d'installation avec Python 3.9 (les versions antérieures de Python 3 devraient également fonctionner sans problème).
+
+3. Pour installer Python 3 saisir la commande suivante (**NB** l'icône sur la droite de la commande permet de la copier ; pour la coller dans **Terminal**, faire Ctrl + Maj + V) :
+
+    ```shell
+    sudo apt-get install python3 libfreetype6-dev python3-pip python3-venv python3-virtualenv
+    ```
+
+4. Pour créer un environnement virtuel Python 3.9, effectuer successivement les commandes suivantes :
+    
+    - Récupérer le dépôt des anciennes versions de Python
+        
+        ```shell
+        sudo add-apt-repository ppa:deadsnakes/ppa
+        ```
+    
+    - Rechercher les mises à jour :
+        
+        ```shell
+        sudo apt-get update
+        ```
+    - Installer Python 3.9 :
+        
+        ```shell
+        sudo apt-get install python3.9
+        ```
+    - Installer le gestionnaire d'environnement virtuel de Python 3.9 :
+        
+        ```shell
+        sudo apt-get install python3.9-venv
+        ```
+
+4. Créer un nouveau dossier pour les entraînements :
+
+	```shell
+	mkdir -p ~/Bureau/htr/vt
+	```
+
+5. Se déplacer dans ce dossier :
+
+	```shell
+	cd ~/Bureau/htr/vt
+	```
+
+6. Créer un environnement virtuel à l'aide de la commande :
+  
+    ```shell
+    python3.9 -m venv ~/python/foo-3.9 venv
+    ```
+
+- Activer cet environnement virtuel à l'aide de la commande (opération à **réitérer** à chaque lancement de l'application) :
+    ```shell
+    source venv/bin/activate
+    ```
+- Installer les modules requis grâce à la commande :
+    ```shell
+    pip install -r requirements.txt
+    ```
 		
-		```shell
-		pip install kraken
-		```
 
-Si Kraken est déjà installé, on obtient
 
-# Exporter une vérité de terrain
 
-1. Sélectionner toutes les images
+# Exporter une vérité de terrain depuis e-Scriptorium
+
+1. Sélectionner toutes les images de la vérité de terrain
 2. Cliquer sur **Export**
 3. Sélectionner la transcription **Manual**
 4. Cocher **Include images**
 5. Format **Alto**
-6. Récupérer l'archie `.zip` dans le dossier `Téléchargements`
-7. Extraire le contenu et le placer dans le dossier `C:\Users\vmariotti\Desktop\entrainements-kraken\VT`
+
+# Placer la vérité de terrain dans un dossier dédié
+
+1. Ouvrir **Terminal**
+2. Se déplacer dans le dossier Téléchargements :
+	
+	```shell
+	cd ~/Téléchargements/
+	```
+
+3. Extraire l'archive dans le nouveau dossier :
+
+	```shell
+	unzip [NOM DE L'ARCHIVE].zip -d ~/Bureau/htr/vt
+	```
+
+# Importer le modèle HTR
+
+1. Se déplacer dans le dossier :
+
+	```shell
+	cd ~/Bureau/htr
+	```
+
+2. Créer un dossier pour les modèles :
+
+	```shell
+	mkdir modeles
+	```
+
+3. Télécharger le modèle Bicerin en cliquant [ici](https://github.com/HTR-United/cremma-medieval/releases/download/1.1.0/cremmamedievalnew_best.mlmodel)
+
+4. Placer le modèle dans le dossier dédié :
+
+	```shell
+	mv ~/Téléchargements/cremmamedievalnew_best.mlmodel modeles/
+	```
+
+# Evaluer le modèle Bicerin sur la vérité de terrain
+
+1. Se placer dans le dossier suivant :
+
+	```shell
+	cd ~/Bureau/htr
+	```
+
+2. Lancer la commande suivante :
+	
+	```shell
+	ketos test -m ./modeles/cremmamedievalnew_best.mlmodel ./vt/*xml -f alto
+	```
+
+Quelle est l'*Average accuracy* ? C'est le pourcentage d'acuité du modèle 100% = parfait !
+
+# Personnaliser le modèle Bicerin à l'aide de la vérité de terrain
+
+C'est une opération potentiellement longue (plusieurs heures).
+
+1. Créer un dossier pour les modèles entraînés :
+
+	```shell
+	mkdir modeles/entrainement
+	```
+
+Lancer la commande :
+
+
+```shell
+ketos train -r 0.0001 --lag 20  -s '[1,120,0,1 Cr3,13,32 Do0.1,2 Mp2,2 Cr3,13,32 Do0.1,2 Mp2,2 Cr3,9,64 Do0.1,2 Mp2,2 Cr3,9,64 Do0.1,2 S1(1x0)1,3 Lbx200 Do0.1,2 Lbx200 Do.1,2 Lbx200 Do]' --augment --device cpu --resize add -i ./modeles/cremmamedievalnew_best.mlmodel -t ./vt/*xml -f alto --output modeles/entrainement/
+```
+
 
 # Compléments (seulement pour Piccioncino)
 
