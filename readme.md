@@ -4,7 +4,7 @@ title: Mode d'emploi pour évaluer et entraîner un modèle HTR avec Kraken
 
 Toutes ces opérations se passent dans une session **Ubuntu**.
 
-# Installer Kraken
+# Installer Python et Kraken
 
 1. Pour ouvrir le programme **Terminal** :
 	
@@ -23,12 +23,11 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
     sudo apt-get install python3 libfreetype6-dev python3-pip python3-venv python3-virtualenv
     ```
 
-4. Créer un nouveau dossier pour les entraînements :
+4. Installer Kraken
 
 	```shell
-	mkdir -p ~/Bureau/htr/vt
+	pip install kraken
 	```
-
 
 
 # Exporter une vérité de terrain depuis e-Scriptorium
@@ -44,22 +43,28 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 
 1. Ouvrir **Terminal**
 
-2. Se déplacer dans le dossier Téléchargements :
+2. Se déplacer dans le dossier `Téléchargements/` :
 	
 	```shell
 	cd ~/Téléchargements/
 	```
 
-3. Extraire l'archive dans le nouveau dossier :
+3. Créer un nouveau dossier pour les entraînements :
 
 	```shell
-	unzip [NOM DE L'ARCHIVE].zip -d ~/Bureau/htr/vt
+	mkdir -p ~/Bureau/htr/vt
+	```
+
+4. Extraire l'archive dans le nouveau dossier :
+
+	```shell
+	unzip {NOM DE LARCHIVE}.zip -d ~/Bureau/htr/vt
 	```
 
 
 # Importer le modèle HTR
 
-1. Se déplacer dans le dossier :
+1. Se déplacer dans le dossier `htr/` :
 
 	```shell
 	cd ~/Bureau/htr
