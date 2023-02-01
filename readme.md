@@ -44,6 +44,23 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 	pip install kraken
 	```
 
+# Renommer des images en foliotation
+
+1. Télécharger le fichier [numerotation.csv](https://raw.githubusercontent.com/sbiay/htr-mode-emploi/main/numerotation.csv)
+
+2. L'ouvrir
+
+3. Ouvrir toutes les images à renommer dans [XnView](https://www.xnview.com/fr/xnviewmp/#downloads)
+
+4. Sélectionner toutes les images à renommer et faire `Copier`
+
+5. Dans le tableau `numerotation.csv`, se placer dans la située à droite du numéro de folio correspondant au début de la sélection
+
+6. `Coller`, puis fermer en sauvegardant
+
+7. Envoyer le fichier `numerotation.csv` à Piccioncino
+
+
 
 <a id='t2'/>
 
