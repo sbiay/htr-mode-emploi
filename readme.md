@@ -62,7 +62,32 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 
 6. `Coller`, puis fermer en sauvegardant
 
-7. Envoyer le fichier `numerotation.csv` à Piccioncino
+7. Sous Ubuntu, ouvrir un **Terminal**
+
+8. Créer un dossier pour les renumérotations :
+
+	```shell
+	mkdir -p ~/Bureau/htr/renum/sortie
+	```
+9. Placer dans `~/Bureau/htr/renum` :
+	
+	1. Toutes les images à renuméroter
+	2. Le script [`renommer.py`](https://raw.githubusercontent.com/sbiay/htr-mode-emploi/main/renommer.py)
+	3. Le fichier `numerotation.csv`
+
+10. Dans le Terminal, se déplacer dans le dossier :
+
+	```shell
+	cd ~/Bureau/htr/renum
+	```	
+
+11. Lancer le script :
+
+	```shell
+	python3 renommer.py
+	```
+
+12. Les fichiers renommés se trouvent dans le dossier `sortie/`.
 
 
 <a id='t3'/>
