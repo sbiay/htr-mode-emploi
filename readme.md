@@ -5,12 +5,13 @@ title: Mode d'emploi pour évaluer et entraîner un modèle HTR avec Kraken
 Plan :
 
 1. [Installer Python et Kraken](#t1)
-2. [Exporter une vérité de terrain depuis e-Scriptorium](#t2)
-3. [Placer la vérité de terrain dans un dossier dédié](#t3)
-4. [Importer le modèle HTR](#t4)
-5. [Évaluer le modèle Bicerin sur la vérité de terrain](#t5)
-6. [Personnaliser le modèle Bicerin à l'aide de la vérité de terrain](#t6)
-7. [Compléments (seulement pour Piccioncino)](#t7)
+2. [Renommer des images en foliotation](#t2)
+3. [Exporter une vérité de terrain depuis e-Scriptorium](#t3)
+4. [Placer la vérité de terrain dans un dossier dédié](#t4)
+5. [Importer le modèle HTR](#t5)
+6. [Évaluer le modèle Bicerin sur la vérité de terrain](#t6)
+7. [Personnaliser le modèle Bicerin à l'aide de la vérité de terrain](#t7)
+8. [Compléments (seulement pour Piccioncino)](#t8)
 
 [comment]: <> (FINET)
 
@@ -44,6 +45,9 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 	pip install kraken
 	```
 
+
+<a id='t2'/>
+
 # Renommer des images en foliotation
 
 1. Télécharger le fichier [numerotation.csv](https://raw.githubusercontent.com/sbiay/htr-mode-emploi/main/numerotation.csv)
@@ -61,8 +65,7 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 7. Envoyer le fichier `numerotation.csv` à Piccioncino
 
 
-
-<a id='t2'/>
+<a id='t3'/>
 
 # Exporter une vérité de terrain depuis e-Scriptorium
 
@@ -73,7 +76,7 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 5. Format **Alto**
 
 
-<a id='t3'/>
+<a id='t4'/>
 
 # Placer la vérité de terrain dans un dossier dédié
 
@@ -98,7 +101,7 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 	```
 
 
-<a id='t4'/>
+<a id='t5'/>
 
 # Importer le modèle HTR
 
@@ -123,7 +126,7 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 	```
 
 
-<a id='t5'/>
+<a id='t6'/>
 
 # Évaluer le modèle Bicerin sur la vérité de terrain
 
@@ -142,7 +145,7 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 Quelle est l'*Average accuracy* ? C'est le pourcentage d'acuité du modèle 100% = parfait !
 
 
-<a id='t6'/>
+<a id='t7'/>
 
 # Personnaliser le modèle Bicerin à l'aide de la vérité de terrain
 
@@ -169,7 +172,7 @@ ketos train -r 0.0001 --lag 20  -s '[1,120,0,1 Cr3,13,32 Do0.1,2 Mp2,2 Cr3,13,32
 ```
 
 
-<a id='t7'/>
+<a id='t8'/>
 
 # Compléments (seulement pour Piccioncino)
 
