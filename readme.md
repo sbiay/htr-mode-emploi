@@ -58,7 +58,7 @@ Toutes ces opérations se passent dans une session **Ubuntu**.
 
 4. Sélectionner toutes les images à renommer et faire `Copier`
 
-5. Dans le tableau `numerotation.csv`, se placer dans la située à droite du numéro de folio correspondant au début de la sélection
+5. Dans le tableau `numerotation.csv`, se placer dans la case située à droite du numéro de folio correspondant au premier fichier
 
 6. `Coller`, puis fermer en sauvegardant
 
